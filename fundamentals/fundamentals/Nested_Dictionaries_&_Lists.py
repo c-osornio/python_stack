@@ -42,6 +42,13 @@ def iterateDictionary(some_list):
     for i in range(len(some_list)):
         print("first_name - " + some_list[i]['first_name'] + ", last_name - " + some_list[i]['last_name'])
 
+# def iterate_dictionary(list):
+#     for i in range(0, len(list)):
+#         output = ""
+#         for key,val in list[i].items():
+#             output += f" {key} - {val},"
+#         print(output)
+
 students = [
     {'first_name':  'Michael', 'last_name': 'Jordan'},
     {'first_name': 'John', 'last_name': 'Rosales'},
@@ -65,6 +72,12 @@ def iterateDictionary2(key_name, some_list):
     for i in some_list:
         print(i[key_name])
 
+def iterateDictionary2(key_name,list):
+    for i in range(0, len(list)):
+        for key,val in list[i].items():
+            if key == key_name:
+                print(val)
+
 students = [
     {'first_name':  'Michael', 'last_name': 'Jordan'},
     {'first_name': 'John', 'last_name': 'Rosales'},
@@ -80,9 +93,16 @@ iterateDictionary2('last_name', students)
 
 def printInfo(some_dict):
     for key in some_dict:
-        print(len(some_dict[key]), key)
+        print(f"{len(some_dict[key])} {key.upper()}")
         for i in range(len(some_dict[key])):
             print(some_dict[key][i])
+
+# def printInfo(dict):
+#     for key,val in dict.items():
+#         print("--------------")
+#         print(f"{len(val)} {key.upper()}")
+#         for i in range(0, len(val)):
+#             print(val[i])
 
 dojo = {
     'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
