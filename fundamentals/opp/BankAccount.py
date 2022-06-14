@@ -14,7 +14,8 @@ class BankAccount:
         if (self.balance - amount) >= 0:
             self.balance -= amount
         else:
-            print(f'Insufficent funds')
+            print("Insufficent funds: Charging a $5 fee")
+            self.balance -+ 5
         return self
 
     def display_account_info(self):
@@ -32,7 +33,7 @@ class BankAccount:
     @classmethod
     def print_accts(cls):
         for accounts in cls.all_accts:
-            print(accounts.display_account_info())
+            accounts.display_account_info()
 
 acct1 = BankAccount(.01, 1000)
 acct2 = BankAccount(.04, 7500)

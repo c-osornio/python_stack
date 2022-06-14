@@ -1,3 +1,4 @@
+import random
 fruits = ['apple', 'banana', 'orange', 'strawberry']
 vegetables = ['lettuce', 'cucumber', 'carrots']
 fruits_and_vegetables = fruits + vegetables
@@ -91,7 +92,8 @@ while num <= 10:
     num += 1
     print(num)
 
-mylist = [{"name": 'Charlie', "age": 30, 'email': 'charlie@gmail.com'}, {"name": 'Stephen',"age": 31, 'email': 'stephen@gmail.com'}, {"name": 'Alex', "age": 27, 'email': 'alex@gmail.com'}]
+mylist = [{"name": 'Charlie', "age": 30, 'email': 'charlie@gmail.com'}, {"name": 'Stephen',
+                                                                         "age": 31, 'email': 'stephen@gmail.com'}, {"name": 'Alex', "age": 27, 'email': 'alex@gmail.com'}]
 
 for item in mylist:
     print(
@@ -153,6 +155,7 @@ print(resumes[1]["languages"][0])
 
 
 class User:
+    # instance method or constructor method
     def __init__(self):
         self.first_name = "Ada"
         self.last_name = "Lovelace"
@@ -173,7 +176,7 @@ print(user2.last_name)
 # Write down any other questions you have.
 
 # Sensei Exercise: try just printing the variable, user_ada.
-#   What prints to the terminal?
+#   What prints to the terminal? Location
 print(user_ada)
 
 
@@ -262,6 +265,7 @@ class User:
     # ! Class Attribute
     population = 0
     # ! CONSTRUCTOR FUNCTION!!!  CREATES THE INSTANCE OF AN OBJECT
+    # first parameter always refers to self but can be names anything
 
     def __init__(self, first_name, last_name, age):
         self.first_name = first_name
@@ -277,6 +281,11 @@ class User:
     def user_population(cls):  # cls is the repersentation of the class not instance
         print(f"{cls.population} users in the program.")
 
+    @classmethod
+    def get_random_user(cls):
+        list_of_names = ["alice", "bob", "charlie"]
+        return cls(list_of_names[random.randint(0, len(list_of_names))], "Johnson", random.randint(13, 100))
+
     @staticmethod
     def validate_age(age):
         is_valid = True
@@ -285,12 +294,14 @@ class User:
         return is_valid
 
 
+print
 carlos = User("Carlos", "Osornio", 30)
 aidee = User("Aidee", "Aguilar", 26)
 kai = User("Kai", "Osornio", 1)
 carlos.greeting()
 
 User.user_population()
+User.get_random_user()
 
 # Lecture OOP in Python
 
@@ -326,12 +337,30 @@ class Student:
     def recession(cls):
         for student in cls.all_students:
             student.money *= .9
-            print(f'{student.name} now has ${student.money} dollars due to recession.')
+            print(
+                f'{student.name} now has ${student.money} dollars due to recession.')
 
 
 person_1 = Student(person_1)
 # print(Student.all_students, Student.quantity_of_students)
 Student.recession()
 
-#chaining methods always have to return something
+# chaining methods always have to return something, retrurn self
 Student.all_students[0].make_money(50)
+
+# Association methods
+
+
+class User:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        self.account = BankAccount(int_rate=0.02, balance=0)  # added this line
+
+
+class User:
+    def example_method(self):
+        # we can call the BankAccount instance's methods
+        self.account.deposit(100)
+        # or access its attributes
+        print(self.account.balance)
