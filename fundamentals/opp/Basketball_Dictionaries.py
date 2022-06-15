@@ -63,16 +63,19 @@ class Player:
         self.age = data["age"]
         self.position = data["position"]
         self.team = data["team"]
+    
+    def __repr__(self):
+        return "Player: {}, {} y/o, pos: {}, team: {}".format(self.name, self.age, self.position, self.team)
 
 # Ninja Bonus: Add an @class method called get_team(cls, team_list) that, given a list of dictionaries populates and returns a new list of Player objects.
     @classmethod
     def get_team(cls, team_list):
         team = []
         for player in team_list:
-            team.append(player)
+            team.append(cls(player))
         return team
 
-print(Player.get_team(players))
+# print(Player.get_team(players))
 
 jason_tatum = Player(players[1])
 print(jason_tatum.name)
@@ -81,14 +84,15 @@ print(jason_tatum.name)
 player_kevin = Player(kevin)
 player_jason = Player(jason)
 player_kyrie = Player(kyrie)
-print(player_kevin.age)
-print(player_jason.team)
-print(player_kyrie.name)
+print(player_kevin)
+print(player_jason)
+print(player_kyrie)
 
 #Complete challenge 3: Populate a new list with Player instances from the list of players.
 
 new_team = []
-for player in players:
+for player_dict in players:
+    player = Player(player_dict)
     new_team.append(player)
 print(new_team)
 

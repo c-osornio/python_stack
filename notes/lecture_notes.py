@@ -364,3 +364,10 @@ class User:
         self.account.deposit(100)
         # or access its attributes
         print(self.account.balance)
+
+
+    # def __repr__(self):
+    #     return "Player: {}, {} y/o, pos: {}, team: {}".format(self.name, self.age, self.position, self.team)
+    # # __repr__(self) is a python system method that 
+    # tells python how to handle representing that class 
+    # when, for example the object is printed to the terminal.
