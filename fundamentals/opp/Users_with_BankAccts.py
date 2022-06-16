@@ -11,7 +11,6 @@ class User:
             "acct2" : BankAccount(0.04, 5000)
         }
 
-    
 #Add a make_deposit method to the User class that calls on it's bank account's instance methods.
     def make_deposit(self, amount, acct):
         self.account[acct].deposit(amount)

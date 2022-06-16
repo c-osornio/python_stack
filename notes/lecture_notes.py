@@ -365,9 +365,91 @@ class User:
         # or access its attributes
         print(self.account.balance)
 
-
     # def __repr__(self):
     #     return "Player: {}, {} y/o, pos: {}, team: {}".format(self.name, self.age, self.position, self.team)
-    # # __repr__(self) is a python system method that 
-    # tells python how to handle representing that class 
+    # # __repr__(self) is a python system method that
+    # tells python how to handle representing that class
     # when, for example the object is printed to the terminal.
+
+# Ex 1 of Inheritance
+
+
+# class RetirementAccount(BankAccount):
+#     def __init__(self, int_rate, is_roth, balance=0):
+#         self.int_rate = int_rate
+#         self.balance = balance
+#         self.is_roth = is_roth
+
+
+# class BankAccount:
+#     def __init__(self, int_rate, balance=0):
+#         self.int_rate = int_rate
+#         self.balance = balance
+
+# better to do
+
+
+class RetirementAccount(BankAccount):
+    def __init__(self, int_rate, is_roth, balance=0):
+        super().__init__(int_rate, balance)
+        self.is_roth = is_roth
+
+
+class BankAccount:
+    def __init__(self, int_rate, balance=0):
+        self.int_rate = int_rate
+        self.balance = balance
+
+# Ex 2
+
+
+# class RetirementAccount(BankAccount):
+#     def withdraw(self, amount, is_early):
+#         if is_early:
+#             amount = amount * 1.10
+#         if (self.balance - amount) > 0:
+#             self.balance -= amount
+#         else:
+#             print("INSUFFICIENT FUNDS")
+#         return self
+
+
+# class BankAccount:
+#     def withdraw(self, amount):
+#         if (self.balance - amount) > 0:
+#             self.balance -= amount
+#         else:
+#             print("INSUFFICIENT FUNDS")
+#         return self
+
+# better to do
+
+
+class RetirementAccount(BankAccount):
+    def withdraw(self, amount, is_early):
+        if is_early:
+            amount = amount * 1.10
+        super().withdraw(amount)
+        return self
+
+
+class BankAccount:
+    def withdraw(self, amount):
+        if (self.balance - amount) > 0:
+            self.balance -= amount
+        else:
+            print("INSUFFICIENT FUNDS")
+        return self
+
+
+class Parent:
+    def method_a(self):
+        print("invoking PARENT method_a!")
+class Child(Parent):
+    def method_a(self):
+        print("invoking CHILD method_a!")
+dad = Parent()
+son = Child()
+dad.method_a()
+son.method_a() #notice this overrides the Parent method!
+
