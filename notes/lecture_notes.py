@@ -92,8 +92,7 @@ while num <= 10:
     num += 1
     print(num)
 
-mylist = [{"name": 'Charlie', "age": 30, 'email': 'charlie@gmail.com'}, {"name": 'Stephen',
-                                                                         "age": 31, 'email': 'stephen@gmail.com'}, {"name": 'Alex', "age": 27, 'email': 'alex@gmail.com'}]
+mylist = [{"name": 'Charlie', "age": 30, 'email': 'charlie@gmail.com'}, {"name": 'Stephen',"age": 31, 'email': 'stephen@gmail.com'}, {"name": 'Alex', "age": 27, 'email': 'alex@gmail.com'}]
 
 for item in mylist:
     print(
@@ -453,3 +452,5 @@ son = Child()
 dad.method_a()
 son.method_a() #notice this overrides the Parent method!
 
+favorite_color = input('What is your favorite color? ') # input takes a prompt, which needs to be a string
+print(f'Your favorite color is: {favorite_color}') #output, prints the color given to the console
