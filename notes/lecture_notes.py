@@ -92,7 +92,8 @@ while num <= 10:
     num += 1
     print(num)
 
-mylist = [{"name": 'Charlie', "age": 30, 'email': 'charlie@gmail.com'}, {"name": 'Stephen',"age": 31, 'email': 'stephen@gmail.com'}, {"name": 'Alex', "age": 27, 'email': 'alex@gmail.com'}]
+mylist = [{"name": 'Charlie', "age": 30, 'email': 'charlie@gmail.com'}, {"name": 'Stephen',
+                                                                         "age": 31, 'email': 'stephen@gmail.com'}, {"name": 'Alex', "age": 27, 'email': 'alex@gmail.com'}]
 
 for item in mylist:
     print(
@@ -388,10 +389,10 @@ class User:
 # better to do
 
 
-class RetirementAccount(BankAccount):
-    def __init__(self, int_rate, is_roth, balance=0):
-        super().__init__(int_rate, balance)
-        self.is_roth = is_roth
+# class RetirementAccount(BankAccount):
+#     def __init__(self, int_rate, is_roth, balance=0):
+#         super().__init__(int_rate, balance)
+#         self.is_roth = is_roth
 
 
 class BankAccount:
@@ -444,13 +445,69 @@ class BankAccount:
 class Parent:
     def method_a(self):
         print("invoking PARENT method_a!")
+
+
 class Child(Parent):
     def method_a(self):
         print("invoking CHILD method_a!")
+
+
 dad = Parent()
 son = Child()
 dad.method_a()
-son.method_a() #notice this overrides the Parent method!
+son.method_a()  # notice this overrides the Parent method!
 
-favorite_color = input('What is your favorite color? ') # input takes a prompt, which needs to be a string
-print(f'Your favorite color is: {favorite_color}') #output, prints the color given to the console
+# input takes a prompt, which needs to be a string
+favorite_color = input('What is your favorite color? ')
+# output, prints the color given to the console
+print(f'Your favorite color is: {favorite_color}')
+
+# Singly Linked Node
+class SLNode:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class SList:
+    def __init__(self):
+        self.head = None
+# Just as we would pass in a value to a Python list's append method, our add_to_front method should accept a value to be added to the list:
+    def add_to_front(self, val):
+        #Create a node with the given value, with the SLNode
+        new_node = SLNode(val)
+        #Set the new node's next to be the current head
+        new_node.next = self.head
+        # Set the list's head to the new node
+        self.head = new_node
+        return self
+
+    def print_values(self):
+        runner = self.head # pointer to the list's first node
+        while (runner != None): # iterating while runner is a node and not None
+            print(runner.value)
+            runner = runner.next # set the runner to its neighbor
+        return self    # once the loop is done, allow for chaining
+
+    def add_to_back(self, val): # accepts a value
+        if self.head == None:   # if the list is empty
+            self.add_to_front(val)  # run the add_to_front method
+            return self # lets make sure the rest of this function doesnt happen if we add to the front
+        new_node = SLNode(val) # create a new instance of our Node class with the given value
+        runner = self.head # set an iterator to start at the front of the list
+        while (runner.next != None): # iterator until the iterator doesnt have a neighbor
+            runner = runner.next # increment the runner to the next node in the list
+        runner.next = new_node # increament the runner to the next node in the list
+        return self # chaining
+
+# my_list = SList()
+# my_list.add_to_front("Jim")
+# my_list.add_to_front("Dwight")
+# my_list.add_to_front("Andy")
+# my_list.print_values()
+
+my_list = SList()	# create a new instance of a list
+my_list.add_to_front("are").add_to_front("Linked lists").add_to_back("fun!").print_values()          # chaining, yeah!
+# output should be:
+# Linked lists
+# are
+# fun!
