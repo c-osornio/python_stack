@@ -1,3 +1,4 @@
+import unittest
 import random
 fruits = ['apple', 'banana', 'orange', 'strawberry']
 vegetables = ['lettuce', 'cucumber', 'carrots']
@@ -463,41 +464,46 @@ favorite_color = input('What is your favorite color? ')
 print(f'Your favorite color is: {favorite_color}')
 
 # Singly Linked Node
+
+
 class SLNode:
     def __init__(self, value):
         self.value = value
         self.next = None
 
+
 class SList:
     def __init__(self):
         self.head = None
 # Just as we would pass in a value to a Python list's append method, our add_to_front method should accept a value to be added to the list:
+
     def add_to_front(self, val):
-        #Create a node with the given value, with the SLNode
+        # Create a node with the given value, with the SLNode
         new_node = SLNode(val)
-        #Set the new node's next to be the current head
+        # Set the new node's next to be the current head
         new_node.next = self.head
         # Set the list's head to the new node
         self.head = new_node
         return self
 
     def print_values(self):
-        runner = self.head # pointer to the list's first node
-        while (runner != None): # iterating while runner is a node and not None
+        runner = self.head  # pointer to the list's first node
+        while (runner != None):  # iterating while runner is a node and not None
             print(runner.value)
-            runner = runner.next # set the runner to its neighbor
+            runner = runner.next  # set the runner to its neighbor
         return self    # once the loop is done, allow for chaining
 
-    def add_to_back(self, val): # accepts a value
+    def add_to_back(self, val):  # accepts a value
         if self.head == None:   # if the list is empty
             self.add_to_front(val)  # run the add_to_front method
-            return self # lets make sure the rest of this function doesnt happen if we add to the front
-        new_node = SLNode(val) # create a new instance of our Node class with the given value
-        runner = self.head # set an iterator to start at the front of the list
-        while (runner.next != None): # iterator until the iterator doesnt have a neighbor
-            runner = runner.next # increment the runner to the next node in the list
-        runner.next = new_node # increament the runner to the next node in the list
-        return self # chaining
+            return self  # lets make sure the rest of this function doesnt happen if we add to the front
+        # create a new instance of our Node class with the given value
+        new_node = SLNode(val)
+        runner = self.head  # set an iterator to start at the front of the list
+        while (runner.next != None):  # iterator until the iterator doesnt have a neighbor
+            runner = runner.next  # increment the runner to the next node in the list
+        runner.next = new_node  # increament the runner to the next node in the list
+        return self  # chaining
 
 # my_list = SList()
 # my_list.add_to_front("Jim")
@@ -505,9 +511,164 @@ class SList:
 # my_list.add_to_front("Andy")
 # my_list.print_values()
 
-my_list = SList()	# create a new instance of a list
-my_list.add_to_front("are").add_to_front("Linked lists").add_to_back("fun!").print_values()          # chaining, yeah!
+
+my_list = SList()  # create a new instance of a list
+my_list.add_to_front("are").add_to_front("Linked lists").add_to_back(
+    "fun!").print_values()          # chaining, yeah!
 # output should be:
 # Linked lists
 # are
 # fun!
+
+# Anonymous functions
+
+
+def square(num):
+    x = num ** 2
+    return x
+
+
+# Python code to Demonstrate the Exponential Operactor
+a = 2
+b = 5
+# using double asterisk operator
+c = a**b
+print(c)
+# using double asterisk operator
+z = 2 * (4 ** 2) + 3 * (4 ** 2 - 10)
+print(z)
+
+lambda num: num ** 2
+lambda num1, num2: num1+num2
+
+# create a new list, with a lambda as an element
+my_list = ['test_string', 99, lambda x: x ** 2]
+# access the value in the list
+print(my_list[2])  # will print a lambda object stored in memory
+# invoke the lambda function, passing in 5 as the argument
+print(my_list[2](5))
+
+# define a function that takes one input that is a function
+
+
+def invoker(callback):
+# invoke the input pass the argument 2
+    print(callback(2))
+
+
+invoker(lambda x: 2 * x)
+invoker(lambda y: 5 + y)
+
+add10 = lambda x: x + 10  # store lambda expression in a variable
+add10(2)  # returns 12
+add10(98)  # returns 108
+
+
+def incrementor(num):
+    start = num
+    return lambda x: num + x
+
+
+# create a list
+my_arr = [1, 2, 3, 4, 5]
+# define a function that squares values
+
+
+def square(num):
+    return num ** 2
+
+
+# invoke map function
+print(map(square, my_arr))
+print(list(map(square, my_arr)))
+print(list(map(lambda num: num ** 2, my_arr)))
+
+my_arr = [1, 2, 3, 4, 5]
+# invoke map, pass in a lambda as the first argument
+print(list(map(lambda x: x ** 2, my_arr)))
+
+my_list = [99, 4, 2, 5, -3]
+my_tuple = (99, 4, 2, 5, -3)
+my_str = "sequoia"
+print(my_list[:])
+# output: [99,4,2,5,-3]
+print(my_tuple[1:])
+# output: (4,2,5,-3)
+print(my_str[:3])
+# output: "seq"
+print(my_tuple[2:4])
+# output: (2,5)
+print(my_list, my_tuple, my_str)
+# output: [99,4,2,5,-3] (99,4,2,5,-3) 'sequoia' -- note the original values have not changed
+
+# Other Built-In Sequence Methods
+
+# Here are a few commonly used built-in functions for sequences:
+
+# max(sequence) returns the largest value in the sequence
+# sum(sequence) returns the sum of all values in sequence
+# map(function, sequence) applies the function to every item in the sequence you pass in. Returns a list of the results.
+# min(sequence) returns the lowest value in a sequence.
+# sorted(sequence) returns a sorted list of the sequence's values
+
+my_list = [99, 4, 2, 5, -3]
+my_tuple = (99, 4, 2, 5, -3)
+my_str = "sequoia"
+print(my_list[:])
+# output: [99,4,2,5,-3]
+print(my_tuple[1:])
+# output: (4,2,5,-3)
+print(my_str[:3])
+# output: "seq"
+print(my_tuple[2:4])
+# output: (2,5)
+print(my_list, my_tuple, my_str)
+# output: [99,4,2,5,-3] (99,4,2,5,-3) 'sequoia' -- note the original values have not changed
+
+
+def map(list, function):
+    for i in range(len(list)):
+        list[i] = function(list[i])
+    return list
+
+
+print(map([1, 2, 3, 4], (lambda num: num*num)))
+print(map([1, 2, 3, 4], (lambda num: num*3)))
+print(map([1, 2, 3, 4], (lambda num: num % 2)))
+
+# import the python testing framework
+import unittest
+# our "unit"
+# this is what we are running our test on
+
+
+def isEven(n):
+    if n % 2 == 0:
+        return True
+    else:
+        return False
+# our "unit tests"
+# initialized by creating a class that inherits from unittest.TestCase
+
+
+class IsEvenTests(unittest.TestCase):
+    # each method in this class is a test to be run
+    def testTwo(self):
+        self.assertEqual(isEven(2), True)
+        # another way to write above is
+        self.assertTrue(isEven(2))
+    def testThree(self):
+        self.assertEqual(isEven(3), False)
+        # another way to write above is
+        self.assertFalse(isEven(3))
+        # any task you want run before any method above is executed, put them in the setUp method
+    def setUp(self):
+        # add the setUp tasks
+        print("running setUp")
+    # any task you want run after the tests are executed, put them in the tearDown method
+    def tearDown(self):
+    # add the tearDown tasks
+        print("running tearDown tasks")
+if __name__ == '__main__':
+    unittest.main() # this runs our tests
+
