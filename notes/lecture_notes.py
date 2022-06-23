@@ -672,3 +672,91 @@ class IsEvenTests(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main() # this runs our tests
 
+class Post: 
+    def __init__(self, user, content):
+        self.user = user
+        self.content = content
+
+class User:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        self.posts = [] 
+
+#User should have a method to create a post and add the newest post to the list of posts
+
+    def create_post(self, content):
+        self.posts.append(Post(self, content))
+        return self
+
+#User should have a method to edit the post 
+
+    def edit_post(self, post_id, content):
+        self.posts[post_id].content = content
+        return self
+
+#User should have a method to delete the post
+
+    def delete_post(self, post_id):
+        if self.posts[post_id] == None:
+            print(f'Whoops, there is nothing in this index')
+        else:
+            self.posts[post_id] = None
+        return self
+
+#User should have a method to print all of their posts
+
+    def print_all_posts(self):
+        for post in self.posts:
+            print(post.content)
+
+user1 = User("Carlos", "coso@gmail.com")
+user1.create_post("Hello World").create_post("Second Post").print_all_posts()
+user1.edit_post(1, "Edited Post").print_all_posts()
+user1.delete_post(1).delete_post(1)
+
+class Car: 
+    def __init__(self, year, make, model, type, color, mileage=0, fuel=0):
+        self.year = year
+        self.make = make
+        self.model = model
+        self.type = type
+        self.color = color
+        self.mileage = mileage
+        self.fuel = fuel
+
+    def __repr__(self):
+        return f"This car is a {self.color} {self.year} {self.make} {self.model} {self.type} with {self.mileage} miles and {self.fuel} gallons of fuel"
+
+    def fill_tank(self, amount=100):
+        if self.fuel == 100:
+            print("Tank is full")
+        elif self.fuel + amount > 100:
+            self.fuel = 100
+        else:
+            self.fuel += amount
+        return self
+
+    def drive(self):
+        if self.fuel > 10:
+            self.fuel -= 10 
+            self.mileage += 10
+        else: 
+            print(f"Sorry get some fuel!")
+        return self
+
+    def paint_job(self, color):
+        self.color = color
+        return self
+
+car1 = Car(2016, "Toyota", "FR-S", "Standard", "silver")
+car2 = Car(2016, "Mercedes", "GLA-250", "4-matic", "dark gray")
+
+print(car1)
+car1.paint_job("blue").fill_tank()
+print(car1)
+
+car1.drive().drive().drive().drive()
+print(car1)
+car1.fill_tank(20)
+print(car1)
