@@ -9,7 +9,7 @@ ORDER BY percentage DESC;
 -- 2. What query would you run to display the total number of cities for each country? Your query should return the name of the country and the total number of cities. Your query should arrange the result by the number of cities in descending order. (3)
 SELECT countries.name, COUNT(cities.name) AS cities
 FROM countries
-JOIN cities
+LEFT JOIN cities
 ON countries.id = cities.country_id
 GROUP BY countries.name
 ORDER BY cities DESC;
@@ -40,8 +40,7 @@ SELECT countries.name AS country_name, cities.name AS city_name, district, citie
 FROM countries
 JOIN cities 
 ON countries.id = cities.country_id
-WHERE countries.name = 'Argentina'
-AND district = 'Buenos Aires'
+WHERE district = 'Buenos Aires'
 AND cities.population > 500000;
 -- 8. What query would you run to summarize the number of countries in each region? The query should display the name of the region and the number of countries. Also, the query should arrange the result by the number of countries in descending order. (2)
 SELECT region, COUNT(countries.id) AS countries
