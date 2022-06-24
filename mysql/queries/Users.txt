@@ -2,7 +2,9 @@
 USE user_schema;
 -- Query: Create 3 new users
 INSERT INTO users (first_name, last_name, email)
-VALUES ('Carlos', 'Osornio', 'cosornio@gmail.com'), ('Aidee', 'Aguilar', 'aaguilar@gmail.com'), ('Kai', 'Osornio', 'kai@gmail.com');
+VALUES ('Carlos', 'Osornio', 'cosornio@gmail.com'), 
+('Aidee', 'Aguilar', 'aaguilar@gmail.com'), 
+('Kai', 'Osornio', 'kai@gmail.com');
 -- Query: Retrieve all the users
 SELECT * FROM users;
 -- Query: Retrieve the first user using their email address
