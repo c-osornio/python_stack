@@ -1,4 +1,4 @@
-from flask import Flask  # Import Flask to allow us to create our app
+from flask import Flask, render_template  # Import Flask to allow us to create our app
 
 app = Flask(__name__)  # Create a new instance of the Flask class called "app"
 
@@ -36,6 +36,11 @@ def repeat(amount, word):
     for i in range(amount):
         string += word + ' '
     return string
+
+# @app.route('/name/<user_name>')
+# def hello(user_name):
+#     return render_template('index.html', name=user_name)
+# in HTML - use an if method in Jinja2 to check if a name was provided with {%  if name %}
 
 
 # app.run(debug=True) should be the very last statement!
