@@ -774,3 +774,23 @@ print(car1)
 
 # if __name__=="__main__":
 #     app.run(debug=True)    
+
+from flask import Flask  # Import Flask to allow us to create our app
+app = Flask(__name__)    # Create a new instance of the Flask class called "app"
+
+@app.route('/')          # The "@" decorator associates this route with the function immediately following
+def hello_world():
+    return 'Hello World!'  # Return the string 'Hello World!' as a response
+
+@app.route('/home')
+def home():
+    return "Hello this is the main page <h1>HELLO</h1>"
+
+@app.route('/users/<string:username>/<int:id>') # for a route '/users/____/____', two parameters in the url get passed as username and id
+def show_user_profile(username, id):
+    print(username)
+    print(id)
+    return "username: " + username + ", id: " + str(id)
+
+if __name__=="__main__":   # Ensure this file is being run directly and not from a different module    
+    app.run(debug=True)    # Run the app in debug mode.
