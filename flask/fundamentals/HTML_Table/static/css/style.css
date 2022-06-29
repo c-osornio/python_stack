@@ -1,0 +1,12 @@
+* {
+    padding: 0;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    width: 800px;
+}
