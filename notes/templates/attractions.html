@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attractions</title>
+</head>
+<body>
+    <h1>Welcome, {{session['username']}}!</h1>
+    <h2>Enter a tourist attraction:</h2>
+    <form action='/attractions/create' method='post'>
+        <label for='attraction'>Attraction:</label>
+        <input type='text' name='attraction'>
+        <br>
+        <label for='city'>City:</label>
+        <input type='text' name='city'>
+        <br>
+        <input type='submit' value='Enter'>
+    </form>
+    <p>Tourist attractions entered:</p>
+    {% for attraction in session['attractions'] %} 
+        <p>{{attraction}}</p>
+    {% endfor %}
+    <br>
+    {{session['variable'] | safe}}
+    <br>
+    <form action="/reset" method='POST'>
+    <button>Reset</button>
+    </form>
+    <form action="/return" method='POST'>
+        <button>Exit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Counter</title>
+</head>
+<body>
+    <h1> Counter </h1>
+
+    <h2>You have visted this page: {{session['count']}} time/s </h2>
+
+    <form action="/counter" method="post">
+        <button type="submit" class="btn btn-primary" name="count" value="add">Click</button>
+        <button type="submit" class="btn btn-danger" name ="count" value="reset">Reset</button>
+    </form>
+    <br>
+
+    <h2>Value of the counter: {{session['counter']}} </h2>
+    <form action="/plus2" method="post">
+        <button type="submit" class="btn btn-success">Plus 2 to counter</button>
+    </form>
+    <h2>Specify increment of counter</h2>
+    <form action="/pick" method="post">
+        <input type='number' name='pick'>
+        <button type="submit" class="btn btn-info">Increment</button>
+    </form>
+
+</body>
+</html>
