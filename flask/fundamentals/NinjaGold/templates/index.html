@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NinjaGold</title>
+</head>
+<body>
+
+    {% if session['gold'] >= 0 %}
+        <h1 style='color: green'>Your Gold: {{session['gold']}}</h1>
+    {% else %}
+        <h1 style='color: red'>You owe {{session['gold']}} gold!</h1>
+    {% endif %}
+
+    <h2>Farm</h2>
+    <h3>(earns 10-20 gold)</h3>
+    <br>
+    <form action="/process_money" method="post">
+        <input type="hidden" name="location" value="Farm">
+        <button type="submit">Find Gold</button>
+    </form>
+
+    <h2>Cave</h2>
+    <h3>(earns 5 - 10 gold)</h3>
+    <br>
+    <form action="/process_money" method="post">
+        <input type="hidden" name="location" value="Cave">
+        <button type="submit">Find Gold</button>
+    </form>    
+
+    <h2>House</h2>
+    <h3>(earns 2 - 5 gold)</h3>
+    <br>
+    <form action="/process_money" method="post">
+        <input type="hidden" name="location" value="House">
+        <button type="submit">Find Gold</button>
+    </form>    
+
+    <h2>Casino</h2>
+    <h3>(earns/takes 0 - 50 gold)</h3>
+    <br>
+    <form action="/process_money" method="post">
+        <input type="hidden" name="location" value="Casino">
+        <button type="submit">Find Gold</button>
+    </form>
+    <div style='overflow: scroll; height:200px'>
+    {{session['log'] | safe}}
+    </div>
+
+
+    <a href='/reset'><button>Reset</button></a>
+
+</body>
+</html>
