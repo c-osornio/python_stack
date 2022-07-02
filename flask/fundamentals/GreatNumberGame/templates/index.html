@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>The Great Number Game!</title>
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <h2>I am thinking of a number between 1 and 100</h2>
+    <h2>You have 5 guesses!</h2>
+    <h2>Take a guess!</h2>
+    {# {{session['number']}} #}
+    <br>
+{# NINJA BONUS: Let the user know how many attempts they took before guessing the correct number #}
+{# NINJA BONUS: Display the results as shown in the wireframe above (i.e. with appropriate colors and positioning) #}
+{# NINJA BONUS: Let the user know how many attempts they took before guessing the correct number #}
+{# SENSEI BONUS: Only allow the user to guess up to 5 times. If they don't guess it on their 5th attempt, display a "You Lose" message and allow them to try again. #}
+    {% if session['result'] == 'Correct' %}
+        <div class='container correct'>
+            <h1>CONGRATS!</h1>
+            <h2>You guessed it in {{session['counter']}} attempt/s! The number was {{session['number']}}!</h2>
+            <form action='/add_to_leaderboard' method='POST'>
+                <input type="text" name="name">
+                <button type="submit">Add your name to the leaderboard!</button>
+            </form>
+            <a href='/reset'><button>Reset</button></a>
+        </div>
+    {% elif session['result'] == 'High' %}
+        <div class='container high'>
+            <h1>Too high!!!</h1>
+            <h2>Guess # {{session['counter']}} </h2>
+            {% if session['counter'] == 5%}
+                <h2>Sorry, last try. Play again!</h2>
+                <a href='/reset'><button>Reset</button></a>
+            {% endif %}
+        </div>
+    {% elif session['result'] == 'Low' %}
+        <div class='container low'>
+            <h1>Too low!!!</h1>
+            <h2>Guess # {{session['counter']}} </h2>
+            {% if session['counter'] == 5%}
+                <h2>Sorry, last try. Play again!</h2>
+                <a href='/reset'><button>Reset</button></a>
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class='box'>
+    {% if session['counter'] < 5 and session['result'] != 'Correct' %}
+        <form action='/analyze' method='POST' onsubmit="return validateForm()" name='guess' required>
+            <input type="number" name="guess">
+            <br>
+            <button type="submit">GUESS</button>
+        </form>
+    {% endif %}
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
