@@ -5,52 +5,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NinjaGold</title>
+    <style type="text/css">
+    h1 {
+        border: 2px solid black;
+        width: 975px;
+        padding-left: 20px;
+    }
+    .container {
+        display: flex;
+        justify-content: space-between;
+        width: 1000px;
+    }
+    .box {
+        border: 2px solid black;
+        text-align: center;
+        width: 225px;
+        padding-bottom: 10px;
+    }
+    </style>
 </head>
 <body>
 
     {% if session['gold'] >= 0 %}
         <h1 style='color: green'>Your Gold: {{session['gold']}}</h1>
     {% else %}
-        <h1 style='color: red'>You owe {{session['gold']}} gold!</h1>
+        <h1 style='color: red'>Your Gold: {{session['gold']}} gold!</h1>
     {% endif %}
-
-    <h2>Farm</h2>
-    <h3>(earns 10-20 gold)</h3>
-    <br>
-    <form action="/process_money" method="post">
-        <input type="hidden" name="location" value="Farm">
-        <button type="submit">Find Gold</button>
-    </form>
-
-    <h2>Cave</h2>
-    <h3>(earns 5 - 10 gold)</h3>
-    <br>
-    <form action="/process_money" method="post">
-        <input type="hidden" name="location" value="Cave">
-        <button type="submit">Find Gold</button>
-    </form>    
-
-    <h2>House</h2>
-    <h3>(earns 2 - 5 gold)</h3>
-    <br>
-    <form action="/process_money" method="post">
-        <input type="hidden" name="location" value="House">
-        <button type="submit">Find Gold</button>
-    </form>    
-
-    <h2>Casino</h2>
-    <h3>(earns/takes 0 - 50 gold)</h3>
-    <br>
-    <form action="/process_money" method="post">
-        <input type="hidden" name="location" value="Casino">
-        <button type="submit">Find Gold</button>
-    </form>
-    <div style='overflow: scroll; height:200px'>
+{# Create the template as shown in the wireframe above, with 4 separate forms #}
+    <div class="container">
+        <div class="box">
+            <h2>Farm</h2>
+            <h3>(earns 10-20 gold)</h3>
+            <br>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="location" value="Farm">
+                <button type="submit">Find Gold</button>
+            </form>
+        </div>
+        <div class="box">
+            <h2>Cave</h2>
+            <h3>(earns 5 - 10 gold)</h3>
+            <br>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="location" value="Cave">
+                <button type="submit">Find Gold</button>
+            </form>    
+        </div>
+        <div class="box">
+            <h2>House</h2>
+            <h3>(earns 2 - 5 gold)</h3>
+            <br>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="location" value="House">
+                <button type="submit">Find Gold</button>
+            </form>    
+        </div>
+        <div class="box">
+            <h2>Casino</h2>
+            <h3>(earns/takes 0 - 50 gold)</h3>
+            <br>
+            <form action="/process_money" method="post">
+                <input type="hidden" name="location" value="Casino">
+                <button type="submit">Find Gold</button>
+            </form>
+        </div>
+    </div>
+    <h3>Activity Log:</h3>
+    <div style='overflow: scroll; height:200px; width:1000px; border:1px solid black;'>
     {{session['log'] | safe}}
     </div>
+{# SENSEI BONUS: Provide winning parameters to the game--for example, a user must obtain 500 gold in less than 15 moves. Only display the reset button once the user has won or lost. #}
+    <h2>SENSEI BONUS!!!</h2>
+    <h3>Can you win 500 GOLD in less than 15 moves???</h3>
 
+    <p><strong>MOVE # {{session['counter']}}</strong></p>
 
-    <a href='/reset'><button>Reset</button></a>
+    {% if session['gold']  >= 500 and session['counter'] <= 15: %}
+        <h2 style='color:green'>WINNER!!! 500 gold in less than 15 moves, congrats!</h2>
+    {% elif  session['counter']  >= 15%}
+        <h2 style='color:red'>Play again?</h2>
+        <a href='/reset'><button>Reset</button></a>
+    {% endif %}
+
 
 </body>
 </html>
