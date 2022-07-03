@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- NINJA BONUS: Use a CSS framework to style your form -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <div class="flex, justify-center col-5 mx-auto mt-5 text-white bg-dark p-5">
+        <h2 class="text-warning">Dojo Survey</h2>
+        <form action="/process"  method="POST">
+            <div class="form-group mt-2">
+                <label for ="name">Name:</label>
+                <input type="text" name="name" class="w-100 rounded form-control">
+            </div>
+            <div class="form-group mt-2">
+                <label for="location">Dojo Location:</label>
+                <select class="form-control w-100 rounded" name="location">
+                    <option selected> -- Select A Location -- </option>
+                    <option>Chicago</option>
+                    <option>Seattle</option>
+                    <option>Online</option>
+                    <option>Burbank</option>
+                    <option>Bellevue</option>
+                </select>
+            </div>
+            <div class="form-group mt-2">
+                <label for="language">Favorite Language:</label>
+                <select class="form-control w-100 rounded" name="language">
+                    <option selected> -- Select A Language -- </option>
+                    <option>HTML</option>
+                    <option>CSS</option>
+                    <option>Javascript</option>
+                    <option>Python</option>
+                    <option>C#</option>
+                </select>
+            </div>
+            <br>
+            <!-- NINJA BONUS: Include a set of radio buttons on your form -->
+            <p>Select your preferred contact method:</p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="choice1" name="contact" value="Email" checked>
+                <label class="form-check-label" for="choice1">Email</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="choice2" name="contact" value="Phone">
+                <label class="form-check-label" for="choice2">Phone</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="choice3" name="contact" value="Mail">
+                <label class="form-check-label" for="choice3">Mail</label>
+            </div>
+            <div class="form-group mt-2">
+                <label for="comments">Comments: </label>
+                <textarea class="form-control" rows="10"  name="comments"></textarea>
+            </div>
+            <!-- SENSEI BONUS: Include a set of checkboxes on your form -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="subscribe">
+                <label class="form-check-label" for="subscribe">Subscribe</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="terms">
+                <label class="form-check-label" for="terms">Accept Terms & Conditions</label>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-warning mt-2">
+        </form>
+    </div>
+</body>
+</html>

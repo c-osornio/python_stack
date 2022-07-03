@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Result</title>
+</head>
+<body>
+    <div class="flex, justify-center col-10 mx-auto mt-5 text-white bg-dark p-5 card">
+        <div class="card-body">
+            <h1 class="card-title text-warning">Welcome!</h1>
+            <h2>Name: {{session['name']}}</h2>
+            <h2>Dojo Location: {{session['location']}}</h2>
+            <h2>Favorite Language: {{session['language']}}</h2>
+            <h2>Contact Method: {{session['contact']}}</h2>
+            <h2>Comment: {{session['comment']}}</h2>
+        </div>
+        <div class="card-body">
+            <a href="/reset" class="btn btn-warning text-white">Home</a>
+        </div>
+    </div>
+</body>
+</html>
