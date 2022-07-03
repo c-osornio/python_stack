@@ -34,7 +34,7 @@ def process_money():
         session['gold'] += gold_found
         session['log'] = f"<p style='color:green'>You just found {gold_found} gold!</p>" + session['log']  
     if request.form['location'] == "Casino":
-        gold_found =  random.randint(-50, 750)
+        gold_found =  random.randint(-50, 50)
         session['gold'] += gold_found
         if gold_found > 0:
             session['log'] = f"<p style='color:green'>You just found {gold_found} gold!</p>" + session['log']  
