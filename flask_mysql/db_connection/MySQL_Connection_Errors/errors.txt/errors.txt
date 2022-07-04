@@ -1,0 +1,23 @@
+Incorrect host - 'localhost2' returns - OperationalError
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost2' ([Errno 11001] getaddrinfo failed)")
+
+Incorrect user - 'user='rooty' returns - RuntimeError
+RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+
+Incorrect password - 'password='rootroot' returns - OperationalError
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+
+Incorrect values - query = cursor.mogrify(data) without query parameter - TypeError
+TypeError: 'bool' object is not iterable
+
+Removed db=db - TypeError
+TypeError: 'bool' object is not iterable
+
+Misspelled connection variable - NameError
+NameError: name 'connection' is not defined
+
+Removed default parameter of None for data in query_db function - TypeError
+TypeError: MySQLConnection.query_db() missing 1 required positional argument: 'data'
+
+Made default parameter 1 instead of None - TypeError
+TypeError: 'bool' object is not iterable
