@@ -21,15 +21,11 @@
     <p>Tourist attractions entered:</p>
     {% for attraction in session['attractions'] %} 
         <p>{{attraction}}</p>
-    {% endfor %}
+    {% endfor %} 
     <br>
-    {{session['variable'] | safe}}
+    {{session['x'] | safe}}
     <br>
-    <form action="/reset" method='POST'>
-    <button>Reset</button>
-    </form>
-    <form action="/return" method='POST'>
-        <button>Exit</button>
-    </form>
+    <a href='/reset'><button>Reset</button></a>
+    <a href='/return'><button>Exit</button></a>
 </body>
 </html>

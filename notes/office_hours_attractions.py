@@ -12,8 +12,8 @@ def login():
 def users():
     if 'attractions' not in session: 
         session['attractions'] = []
-    if 'variable' not in session: 
-        session['variable'] = ' '
+    if 'x' not in session: 
+        session['x'] = ' '
     session['username'] = request.form['name']
     return redirect('/attractions')
 
@@ -29,16 +29,19 @@ def create_attraction():
         session['attractions'] = []
     temp = session['attractions']
     temp.append(f"{request.form['attraction']} in {request.form['city']}")
-    session['variable'] += f"<p>{request.form['attraction']} in {request.form['city']}</p>"
+    session['x'] += f"<p>{request.form['attraction']} in {request.form['city']}</p>"
     session['attractions'] = temp
+    session['attractions'].append(request.form['attraction'])
+    print(session['attractions'])
     return redirect('/attractions')
 
-@app.route('/reset', methods=['POST'])
+
+@app.route('/reset')
 def reset_user():
     session.pop('attractions')
     return redirect('/attractions')
 
-@app.route('/return', methods=['POST'])
+@app.route('/return')
 def return_home():
     session.clear()
     return redirect('/')
