@@ -794,3 +794,104 @@ def show_user_profile(username, id):
 
 if __name__=="__main__":   # Ensure this file is being run directly and not from a different module    
     app.run(debug=True)    # Run the app in debug mode.
+
+
+    @classmethod
+    def get_one(cls, data):
+        query = """
+        SELECT * 
+        FROM users
+        WHERE id = %(id)s 
+        ;"""
+        results = connectToMySQL(cls.db).query_db(query, data)
+        if len(results) < 1:
+            return False
+        row = results[0]
+        user = cls(row)
+        return user
+
+#CREATE
+    @classmethod
+    def create_user(cls, data):
+        query = """
+        INSERT INTO users(first_name, last_name, email, age)
+        VALUES (%(first_name)s, %(last_name)s, %(email)s, %(age)s)
+        ; """
+        return connectToMySQL(cls.db).query_db(query,data)
+
+    @classmethod
+    def save(cls, data):
+        query = """
+        INSERT INTO users(first_name, last_name, email, age)
+        VALUES (%(first_name)s, %(last_name)s, %(email)s, %(age)s)
+        ; """
+        user_id = connectToMySQL(cls.db).query_db(query, data)
+        return user_id
+
+
+#UPDATE
+    @classmethod
+    def update(cls, data):
+        query = """
+        UPDATE users 
+        SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s, age = %(age)s
+        WHERE id = %(id)s
+        ;"""
+        return connectToMySQL(cls.db).query_db( query, data )
+
+#DELETE
+    @classmethod
+    def delete(cls, data):
+        query = """
+        DELETE FROM users
+        WHERE id = %(id)s
+        ;"""
+        return connectToMySQL(cls.db).query_db(query, data)
+
+from flask_app import app
+from flask import render_template,redirect,request,session,flash
+from flask_app.models import User
+
+#CREATE
+@app.route('/users/create', methods=['POST'])
+def create_user():
+    User.save(request.form)
+    return redirect('/')
+
+#READ
+@app.route('/users/<int:id>')
+def show_user(id):
+    data = {
+        "id": id
+    }
+    return render_template('show_user.html', user = User.get_one(data))
+
+@app.route('/')
+def dashboard():
+    return render_template('dashboard.html', users = User.get_all())
+
+@app.route('/users/<int:id>/edit')
+def show_edit_form(id):
+    data = {
+        "id": id
+    }
+    return render_template('edit_user.html', user = User.get_one(data))
+
+@app.route('/users/<int:id>/delete')
+def show_delete_form(id):
+    data = {
+        "id": id
+    }
+    return render_template('delete_user.html', user = User.get_one(data))
+
+#UPDATE
+@app.route('/users/<int:id>/update', methods=['POST'])
+def update_user(id):
+    User.update(request.form)
+    return redirect('/')
+
+#DELETE
+@app.route('/users/<int:id>/destroy')
+def delete_user(id):
+    User.delete(request.form)
+    return redirect('/')
