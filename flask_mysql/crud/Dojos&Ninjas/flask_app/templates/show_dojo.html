@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>{{dojo.name}} Ninjas</title>
+</head>
+
+<body>
+    <h1 class="text-center">{{dojo.name}} Ninjas</h1>
+    <table class="table table-striped table-dark table-hover w-50 mx-auto">
+        <thead>
+            <tr class="text-warning">
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Age</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for ninja in dojo.ninjas %}
+                <tr>
+                    <td>{{ninja.first_name}}</td>
+                    <td>{{ninja.last_name}}</td>
+                    <td>{{ninja.age}}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-center mt-4">
+        <a href="/dojos">Home</a>
+    </div>
+
+</body>
+
+</html>
