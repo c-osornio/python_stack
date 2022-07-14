@@ -76,7 +76,9 @@ class User:
     def validate_user_reg_data(data):
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         is_valid = True
-        print(data['terms'])
+        if 'terms' not in data:
+            flash("Terms and conditions must be accepted.", "registration")
+            is_valid = False
         if len(data['first_name']) < 2:
             flash("Your first name must be at least two characters long.", "registration")
             is_valid = False
