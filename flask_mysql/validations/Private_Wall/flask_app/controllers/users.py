@@ -20,14 +20,13 @@ def index():
     
 @app.route('/users/profile/<int:id>')
 def show_profile(id):
-    if 'user_id' not in session:
-        return redirect('/')
+    if session['user_id'] != id:
+        return redirect(f'/users/profile/{session["user_id"]}')
     this_user = user.User.get_user_by_id(id)
     other_users = user.User.get_all_other_users(id)
     received_count=len(message.Message.get_all_received_by_id(id))
     sent_count=len(message.Message.get_all_sent_by_id(id))
     received_messages = message.Message.get_all_messages_to_user_by_id(id)
-    time_between = message
     return render_template('profile.html', user = this_user, other_users = other_users, received_count=received_count, sent_count=sent_count, received_messages = received_messages)
 
 @app.route('/danger/<int:id>')
@@ -37,10 +36,6 @@ def show_danger(id):
 # Update
 
 # Delete
-@app.route('/users/<int:id>/delete')
-def delete_user(id):
-    user.User.delete(id)
-    return redirect('/')
 
 # Login
 @app.route('/users/login', methods=['POST'])

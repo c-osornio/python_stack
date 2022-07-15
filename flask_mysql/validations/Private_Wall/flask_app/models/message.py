@@ -147,13 +147,15 @@ class Message:
         # time_differenc is a time delta
         time_difference = now - created_at
         # time deltas only have total_seconds() and days
+        days = time_difference.days
         seconds = math.floor(time_difference.total_seconds())
         minutes = math.floor(time_difference.total_seconds() / 60)
         hours = math.floor(minutes / 60)
-        if hours >= 1:
+        if days > 0:
+            return f"{days} days ago"
+        elif hours >= 1:
             return f'{hours} hours ago'
         elif minutes >= 1:
             return f'{minutes} minutes ago'
         else:
             return f'{seconds} seconds ago'
-
