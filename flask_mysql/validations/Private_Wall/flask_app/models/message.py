@@ -152,10 +152,10 @@ class Message:
         minutes = math.floor(time_difference.total_seconds() / 60)
         hours = math.floor(minutes / 60)
         if days > 0:
-            return f"{days} days ago"
+            return f"{days} day(s) ago"
         elif hours >= 1:
-            return f'{hours} hours ago'
+            return f'{hours} hour(s) ago'
         elif minutes >= 1:
-            return f'{minutes} minutes ago'
+            return f'{minutes} minute(s) ago'
         else:
             return f'{seconds} seconds ago'
