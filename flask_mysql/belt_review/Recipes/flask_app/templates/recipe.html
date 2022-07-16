@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{{recipe.name}}</title>
+</head>
+<nav class="d-flex justify-content-around text-bg-dark text-white pt-2">
+    <h1>Welcome, {{user.first_name}}!</h1>
+    <div class="d-flex justify-content-between gap-4 mt-1">
+        <a href='/users/profile/{{session.user_id}}' class="mt-2">Back to recipes</a>
+        <a href='/users/logout'>
+            <button class="btn btn-danger">Logout</button>
+        </a>
+    </div>
+</nav>
+<body>
+
+    <div class="d-flex justify-content-around mt-4">
+        <h1>{{recipe.name}}</h1>
+        <h2>Posted by: {{recipe.chef.first_name}}</h2>
+    </div>
+    <div class="mx-auto border border-dark w-75 p-4">
+        <div class="mx-auto w-50">
+            <div class="d-flex justify-content-between">
+                <h3>Description:</h3>
+                        <div>
+                            <h3>{{recipe.description}}</h3>
+                        </div>
+            </div>    
+            <div class="d-flex justify-content-between">
+                <h3>Under 30 minutes?:</h3>
+                        <div>
+                            <h3>{{recipe.under30}}</h3>
+                        </div>
+            </div>    
+            <div class="d-flex justify-content-between">
+                <h3>Instructions:</h3>
+                        <div>
+                            <h3>{{recipe.instructions}}</h3>
+                        </div>
+            </div>    
+            <div class="d-flex justify-content-between">
+                <h3>Date Made:</h3>
+                        <div>
+                            <h3>{{recipe.date.strftime("%b %d, %Y")}}</h3>
+                        </div>
+        </div>
+    </div>
+</body>
+</html>
