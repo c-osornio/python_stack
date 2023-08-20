@@ -3,6 +3,7 @@ from flask_app import app
 from flask import flash, session
 from flask_app.models import user
 
+
 class Recipe:
     db = "recipes"
     def __init__(self,data):
